@@ -31,11 +31,11 @@ public class UserServiceTest {
 		
 	}
 
-//	@Test
-//	public void testGetInstance() {
-//		fail("Not yet implemented");
-//	}
-//
+	@Test
+	public void testGetInstance() {
+		fail("Not yet implemented");
+	}
+
 	@Test
 	public void testInsertUser() {
 		User user = new User();
