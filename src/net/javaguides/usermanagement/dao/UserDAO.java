@@ -19,9 +19,9 @@ import net.javaguides.usermanagement.model.User;
  *
  */
 
-public class UserDAO {
-	static UserDAO dao;
-	public static UserDAO getInstance() {
+public class UserDAO implements IUserDAO {//in production
+	static IUserDAO dao;
+	public static IUserDAO getInstance() {
 		if(dao == null) {
 			dao = new UserDAO();
 		}
@@ -57,6 +57,7 @@ public class UserDAO {
 		return connection;
 	}
 
+	@Override
 	public void insertUser(User user) {
 		System.out.println(INSERT_USERS_SQL);
 		// try-with-resource statement will auto close the connection.
@@ -72,6 +73,7 @@ public class UserDAO {
 		}
 	}
 
+	@Override
 	public User selectUser(int id) {
 		User user = null;
 		// Step 1: Establishing a Connection
@@ -96,6 +98,7 @@ public class UserDAO {
 		return user;
 	}
 
+	@Override
 	public List<User> selectAllUsers() {
 
 		// using try-with-resources to avoid closing resources (boiler plate code)
@@ -123,6 +126,7 @@ public class UserDAO {
 		return users;
 	}
 
+	@Override
 	public boolean deleteUser(int id) throws SQLException {
 		boolean rowDeleted;
 		try (Connection connection = getConnection();
@@ -133,6 +137,7 @@ public class UserDAO {
 		return rowDeleted;
 	}
 
+	@Override
 	public boolean updateUser(User user) throws SQLException {
 		boolean rowUpdated;
 		try (Connection connection = getConnection();

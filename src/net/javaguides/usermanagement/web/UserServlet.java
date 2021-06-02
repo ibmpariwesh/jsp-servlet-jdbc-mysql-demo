@@ -30,7 +30,7 @@ public class UserServlet extends HttpServlet {// Singleton
 //		userDAO = new UserDAO(); //code smell
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
 		System.out.println(hashCode());
@@ -39,7 +39,6 @@ public class UserServlet extends HttpServlet {// Singleton
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getServletPath();
-
 		try {
 			switch (action) {
 			case "/new":
