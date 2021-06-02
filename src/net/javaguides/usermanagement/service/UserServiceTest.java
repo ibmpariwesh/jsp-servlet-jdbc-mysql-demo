@@ -33,7 +33,7 @@ public class UserServiceTest {
 
 	@Test
 	public void testGetInstance() {
-		fail("Not yet implemented");
+		fail("Not yet implemented567");
 	}
 
 	@Test
