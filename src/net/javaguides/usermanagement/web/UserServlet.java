@@ -14,18 +14,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.javaguides.usermanagement.dao.UserDAO;
 import net.javaguides.usermanagement.model.User;
+import net.javaguides.usermanagement.service.IUserService;
 import net.javaguides.usermanagement.service.UserService;
 
 /**
- * ControllerServlet.java
- * This servlet acts as a page controller for the application, handling all
- * requests from the user.
+ * ControllerServlet.java This servlet acts as a page controller for the
+ * application, handling all requests from the user.
  */
 
 @WebServlet("/")
-public class UserServlet extends HttpServlet {//Singleton
-	   UserService userService = UserService.getInstance(); //singleton
-	
+public class UserServlet extends HttpServlet {// Singleton
+	IUserService userService = UserService.getInstance(); // singleton, loose coupling
+
 	public void init() {
 //		userDAO = new UserDAO(); //code smell
 	}
@@ -57,7 +57,7 @@ public class UserServlet extends HttpServlet {//Singleton
 //			case "/update":
 //				updateUser(request, response);
 //				break;
-			default: //list
+			default: // list
 				listUser(request, response);
 				break;
 			}
@@ -89,17 +89,16 @@ public class UserServlet extends HttpServlet {//Singleton
 		dispatcher.forward(request, response);
 	}
 
-	private void insertUser(HttpServletRequest request, HttpServletResponse response) 
-			throws SQLException, IOException {
+	private void insertUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String country = request.getParameter("country");
 		User newUser = new User(name, email, country);
 		userService.insertUser(newUser);
-		if(true) {
+		if (true) {
 			System.out.println("test");
-		}else {
-			System.out.println("else");//dead code
+		} else {
+			System.out.println("else");// dead code
 		}
 		response.sendRedirect("list");
 	}
