@@ -43,4 +43,10 @@ public class UserServiceTest {
 		service.insertUser(user);
 		assertEquals(12, user.getId());
 	}
+	@Test(expected = IllegalArgumentException.class)
+	public void testInsertUserNoEmail() { //negative testing
+		User user = new User();
+		user.setEmail("oigui");
+		service.insertUser(user);
+	}
 }

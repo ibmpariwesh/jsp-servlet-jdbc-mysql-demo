@@ -11,10 +11,6 @@ import net.javaguides.usermanagement.model.User;
 public class UserService implements IUserService {
 	private IUserDAO userDAO = UserDAO.getInstance();// dependency
 
-	public IUserDAO getUserDAO() {
-		return userDAO;
-	}
-
 	public void setUserDAO(IUserDAO userDAO) {
 		this.userDAO = userDAO;
 	}
@@ -33,6 +29,9 @@ public class UserService implements IUserService {
 
 	@Override
 	public void insertUser(User newUser) {
+		if (newUser.getEmail().equalsIgnoreCase("")) {
+			throw new IllegalArgumentException("email is required field");
+		}
 		String regex = "^(.+)@(.+)$";
 		// Compile regular expression to get the pattern
 		Pattern pattern = Pattern.compile(regex);
